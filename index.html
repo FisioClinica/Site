@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head meta http-equiv="refresh" content="30">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FisioClinica - Saúde e Bem-Estar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #1e293b;
+        }
+
+        /* Header Elegante */
+        .header {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><defs><pattern id="circles" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect x="0" y="0" width="100" height="100" fill="url(%23circles)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .logo-icon i {
+            font-size: 2rem;
+            color: #22c55e;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .logo-subtitle {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-top: -2px;
+        }
+
+        .nav-contact {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .contact-info {
+            color: white;
+            font-size: 0.9rem;
+            text-align: right;
+        }
+
+        .contact-info p {
+            margin: 0.2rem 0;
+        }
+
+        /* Conteúdo Principal */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2rem;
+            position: relative;
+        }
+
+        .main-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><defs><pattern id="plus" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M10 0v20M0 10h20" stroke="rgba(34,197,94,0.05)" stroke-width="1"/></pattern></defs><rect x="0" y="0" width="100" height="100" fill="url(%23plus)"/></svg>');
+        }
+
+        .hero {
+            text-align: center;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            color: #1e293b;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* Botões */
+        .buttons {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn {
+            padding: 1.2rem 2rem;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+        }
+
+        .btn-portfolio {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            color: #22c55e;
+            border: 2px solid #22c55e;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .btn i {
+            font-size: 1.3rem;
+        }
+
+        /* Animações */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 6px 20px rgba(34, 197, 94, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 12px 30px rgba(34, 197, 94, 0.5);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 6px 20px rgba(34, 197, 94, 0.3);
+            }
+        }
+
+        .btn-whatsapp {
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero, .buttons {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+        }
+
+        .footer p {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .nav-contact {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .contact-info {
+                text-align: center;
+            }
+
+            .logo-main {
+                font-size: 1.8rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 1rem;
+            }
+
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-icon i {
+                font-size: 1.5rem;
+            }
+
+            .logo-main {
+                font-size: 1.5rem;
+            }
+
+            .main-content {
+                padding: 2rem 1rem;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Elegante -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <img src="fisioclinica.png" alt="Logo FisioClínica"
+                        style="width: 105%; height: 100%; border-radius: 50%; object-fit: cover;">
+                    </div>
+                <div class="logo-text">
+                    <h1 class="logo-main">FISIOCLINICA</h1>
+                    <span class="logo-subtitle">SAÚDE & BEM-ESTAR</span>
+                </div>
+            </div>
+            <div class="nav-contact">
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> (17) 3421-2955</p>
+                    <p><i class="fas fa-clock"></i> Seg a Sex: 7:30h-12h | 14h-19h</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <div class="hero" style="text-align: center;">
+            <h2>Cuidando da Sua Saúde com Excelência</h2>
+            <p>Na Fisioclínica, unimos tradição, ciência e inovação para oferecer tratamentos personalizados em fisioterapia, reabilitação, osteopatia e estética avançada. Cada paciente recebe atenção única, com protocolos modernos que promovem recuperação, alívio da dor e qualidade de vida.</p>
+                <br>
+            <p>Excelência e cuidado que transformam.</p>
+        </div>
+
+        <div class="buttons">
+            <a href="https://wa.me/551734212955?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta"
+               target="_blank" 
+               class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i>
+                Agendar por WhatsApp
+            </a>
+            
+            <a href="portifolio.html" 
+               class="btn btn-portfolio" 
+               onclick="abrirPortfolio()">
+                <i class="fas fa-briefcase-medical"></i>
+                Conhecer Nosso Trabalho
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>📍 Rua Sete de Setembro, 3834 - Votuporanga - SP</p>
+        <p>©2025 FisioClínica. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function abrirPortfolio() {
+            // Simulação de portfólio - pode ser substituído por link real
+            const portfolioContent = `
+                <div style="padding: 2rem; text-align: center;">
+                    <h2 style="color: #22c55e; margin-bottom: 1rem;">Nosso Portfólio</h2>
+                    <p style="color: #666; margin-bottom: 2rem;">
+                        Aqui serão exibidos os casos de sucesso e especialidades da FisioClinica.
+                    </p>
+                    <div style="background: #f8fafc; padding: 2rem; border-radius: 10px;">
+                        <h3 style="color: #22c55e;">Em Desenvolvimento</h3>
+                        <p style="color: #666;">Página do portfólio em construção...</p>
+                    </div>
+                </div>
+            `;
+            
+        }
+
+        // Efeitos interativos nos botões
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+            
+            btn.addEventListener('click', function(e) {
+                if (this.classList.contains('btn-whatsapp')) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        window.open(this.href, '_blank');
+                        this.style.transform = '';
+                    }, 150);
+                }
+            });
+        });
+    </script>
+    <script>
+        // Atualiza a cada 30 segundos
+        setTimeout(() => {location.reload();}, 30000);
+    </script>
+
+</body>
+</html>
